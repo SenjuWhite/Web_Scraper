@@ -30,13 +30,16 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 Scraper scraper = new Scraper();
-scraper.GetPhoneInfo();
+//scraper.GetPhoneInfo();
 var serviceProvider = builder.Services.BuildServiceProvider();
 using (var scope = serviceProvider.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetService<ApplicationDbContext>();
-    var phones = scraper.GetPhoneInfo();
+    var data = scraper.GetPhoneInfo();
+    var phones = data.Phone;
+    var stores = data.Store;
     dbContext.PhoneInfo.AddRange(phones);
+    dbContext.StoreInfo.AddRange(stores);
     dbContext.SaveChanges();
 }
 

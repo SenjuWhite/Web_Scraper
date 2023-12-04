@@ -11,8 +11,8 @@ namespace Web_Scraper
         {
              
     }
-        public DbSet<PhoneInfo> PhoneInfo { get; set; }
-
+        public DbSet<Phone> PhoneInfo { get; set; }
+        public DbSet<Store> StoreInfo { get; set; }
     }
 }
 
